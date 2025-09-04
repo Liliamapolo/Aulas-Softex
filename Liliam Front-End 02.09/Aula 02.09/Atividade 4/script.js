@@ -1,19 +1,32 @@
-// Mattriz 3x3 com notas (3 alunos x 3 provas)
-let notas = [
-  [8, 7, 9], //Aluno 1
-  [6, 9, 7], //Aluno 2
-  [10, 8, 9], //Aluno 3
-];
+// Matriz 3x3: [aluno][prova]
+    let notas = [
+      [7.5, 8.0, 9.0],  // aluno 1
+      [6.0, 7.5, 8.0],  // aluno 2
+      [9.0, 8.5, 10.0]  // aluno 3
+    ];
 
-//Pegando a tabela do HTML
-let tabela = document.getElementById("tabela");
+    let tabela = document.getElementById("tabelaNotas");
 
-//Criando cabeçalho
-let cabecalho = tabela.insertRow();
-cabecalho.insertCell().textContent = "Aluno";
-cabecalho.insertCell().textContent = "Prova 1";
-cabecalho.insertCell().textContent = "Prova 2";
-cabecalho.insertCell().textContent = "Prova 3";
-cabecalho.insertCell().textContent = "Média";
+    // Cabeçalho
+    let cabecalho = "<tr><th>Aluno</th><th>Prova 1</th><th>Prova 2</th><th>Prova 3</th><th>Média</th></tr>";
+    tabela.innerHTML = cabecalho;
 
-//Preenchendo a tabela e calculando a média
+    // Linhas dos alunos
+    for (let i = 0; i < notas.length; i++) {
+      let soma = 0;
+      for (let j = 0; j < notas[i].length; j++) {
+        soma += notas[i][j];
+      }
+      let media = (soma / notas[i].length).toFixed(2);
+
+      tabela.innerHTML += `
+        <tr>
+          <td>Aluno ${i + 1}</td>
+          <td>${notas[i][0]}</td>
+          <td>${notas[i][1]}</td>
+          <td>${notas[i][2]}</td>
+          <td><b>${media}</b></td>
+        </tr>
+      `;
+    }
+  
